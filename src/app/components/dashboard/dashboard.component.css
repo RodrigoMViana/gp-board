@@ -1,0 +1,117 @@
+.summary {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.hero {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 28px 26px;
+  align-self: start;
+}
+
+.hero__label {
+  margin: 0;
+  font-size: 13px;
+  color: color-mix(in srgb, #fff 65%, transparent);
+}
+
+.hero__value {
+  margin: 10px 0 6px;
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.05;
+  color: #fff;
+}
+
+.hero__sub {
+  margin: 0;
+  font-size: 13px;
+  color: color-mix(in srgb, #fff 75%, transparent);
+}
+
+.stages {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+}
+
+.stages__title {
+  margin: 0 0 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.stage {
+  margin-bottom: 20px;
+}
+.stage:last-child {
+  margin-bottom: 0;
+}
+
+.stage__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.stage__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.stage__count {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 8px;
+}
+
+.stage__amount {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.dot--todo { background: var(--todo); }
+.dot--doing { background: var(--doing); }
+.dot--done { background: var(--done); }
+
+.bar {
+  height: 10px;
+  background: var(--surface);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0, 0, 0.2, 1);
+  min-width: 2px;
+}
+.bar__fill--todo { background: var(--todo); }
+.bar__fill--doing { background: var(--doing); }
+.bar__fill--done { background: var(--done); }
+
+@media (max-width: 720px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}

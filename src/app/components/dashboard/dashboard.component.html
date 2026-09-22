@@ -1,0 +1,25 @@
+<section class="summary" *ngIf="summary$ | async as s">
+  <div class="hero">
+    <p class="hero__label">Valor total no quadro</p>
+    <p class="hero__value money">{{ s.total | currency: 'BRL' }}</p>
+    <p class="hero__sub">{{ s.donePct }}% do valor já concluído</p>
+  </div>
+
+  <div class="stages">
+    <h2 class="stages__title">Onde está o valor</h2>
+
+    <div class="stage" *ngFor="let stage of s.stages">
+      <div class="stage__row">
+        <span class="stage__label">
+          <span class="dot dot--{{ stage.key }}"></span>
+          {{ stage.label }}
+          <span class="stage__count">{{ stage.count }}</span>
+        </span>
+        <span class="money stage__amount">{{ stage.value | currency: 'BRL' }}</span>
+      </div>
+      <div class="bar">
+        <div class="bar__fill bar__fill--{{ stage.key }}" [style.width.%]="stage.pctOfTotal"></div>
+      </div>
+    </div>
+  </div>
+</section>

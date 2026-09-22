@@ -1,0 +1,24 @@
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="field field--grow">
+    <label for="title">Tarefa</label>
+    <input id="title" type="text" formControlName="title" placeholder="Ex.: Revisar contrato do módulo X" />
+    <small class="error" *ngIf="form.controls.title.touched && form.controls.title.invalid">
+      Informe ao menos 3 caracteres.
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="owner">Responsável</label>
+    <input id="owner" type="text" formControlName="owner" placeholder="Nome" />
+    <small class="error" *ngIf="form.controls.owner.touched && form.controls.owner.invalid">
+      Informe o responsável.
+    </small>
+  </div>
+
+  <div class="field field--value">
+    <label for="value">Valor (R$)</label>
+    <input id="value" type="number" min="0" step="100" formControlName="value" />
+  </div>
+
+  <button class="add" type="submit">Adicionar cartão</button>
+</form>

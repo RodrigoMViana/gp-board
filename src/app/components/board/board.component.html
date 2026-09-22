@@ -1,0 +1,43 @@
+<app-card-form></app-card-form>
+
+<div class="board" *ngIf="board$ | async as board">
+  <section class="column" *ngFor="let col of columns">
+    <header class="column__head">
+      <span class="dot dot--{{ col.key }}"></span>
+      <h2 class="column__title">{{ col.label }}</h2>
+      <span class="column__count">{{ board[col.key].length }}</span>
+    </header>
+
+    <div
+      class="list"
+      cdkDropList
+      [id]="col.key"
+      [cdkDropListData]="board[col.key]"
+      [cdkDropListConnectedTo]="connectedTo"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <article class="card card--{{ col.key }}" *ngFor="let card of board[col.key]" cdkDrag>
+        <div class="card__handle" cdkDragHandle aria-hidden="true">⠿</div>
+        <div class="card__body">
+          <p class="card__title">{{ card.title }}</p>
+          <div class="card__meta">
+            <span class="card__owner">{{ card.owner }}</span>
+            <span class="money card__value">{{ card.value | currency: 'BRL' }}</span>
+          </div>
+        </div>
+        <button class="card__remove" (click)="remove(col.key, card.id)" [attr.aria-label]="'Remover ' + card.title">
+          ×
+        </button>
+      </article>
+
+      <p class="list__empty" *ngIf="board[col.key].length === 0">
+        Arraste um cartão para cá.
+      </p>
+    </div>
+
+    <footer class="column__foot">
+      <span>Total da etapa</span>
+      <span class="money">{{ subtotal(board[col.key]) | currency: 'BRL' }}</span>
+    </footer>
+  </section>
+</div>
